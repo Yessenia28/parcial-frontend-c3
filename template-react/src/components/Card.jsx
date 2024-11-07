@@ -1,9 +1,15 @@
 import React from 'react'
 
-const Card = () => {
-  return 
-  
-    <div>Hola, Soy uns tsrjeta</div>;
+const Card = ({ nombreMascota, especieMascota }) => {
+  return (
+
+    <div className='card'>
+
+      <h2>Información de la mascota</h2>
+      <p> <strong>Nombre:</strong>{nombreMascota}</p>
+      <p><strong>Especie:</strong> {especieMascota}</p>
+    </div>
+  );
 };
 
 export default Card;
