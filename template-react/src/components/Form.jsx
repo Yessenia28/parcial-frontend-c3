@@ -2,15 +2,22 @@ import React, { Component, useState } from 'react';
 import Card from './Card';
 
 
-function form() {
+function Form() {
     const [nombreMascota, setNombreMascota] = useState("");
     const [especieMascota, setEspecieMascota] = useState("");
     const [error, setError] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSumbmit = (e) => {
+    const validateForm = () => {
+        return (
+            nombreMascota.length >= 3 &&
+            !nombreMascota.startsWith(' ') &&
+            especieMascota.length >= 6
+        );
+    }
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
+
 
         if (validateForm()) {
             setIsSubmitted(true);
@@ -19,18 +26,17 @@ function form() {
             setIsSubmitted(false);
             setError('Por favor chequea que la información sea correcta');
         }
-        const validateForm = () => {
-            return (
-                nombreMascota.length >= 3 &&
-                !nombreMascota.startsWith(' ') &&
-                especieMascota.length >= 6
-            );
-        }
+
+    };
+    const handleReset = () => {
+        setNombreMascota('');
+        setEspecieMascota('');
+        setIsSubmitted(false);
     };
 
     return (
         <div>
-            <form onSubmit={handleSumbmit}>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Nombre de la mascota:
                     <input
@@ -53,10 +59,12 @@ function form() {
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {isSubmitted && (
+                <div>
                 <Card nombreMascota={nombreMascota} especieMascota={especieMascota} />
+                <button onClick={handleReset}>Añadir otra mascota</button>
+                </div>
             )}
         </div>
     );
 }
-
-export default form;
+export default Form;

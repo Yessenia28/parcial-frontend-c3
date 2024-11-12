@@ -1,9 +1,10 @@
 import React from 'react'
 
+
 const Card = ({ nombreMascota, especieMascota }) => {
   return (
 
-    <div className='card'>
+    <div className='Card'>
 
       <h2>Información de la mascota</h2>
       <p> <strong>Nombre:</strong>{nombreMascota}</p>
